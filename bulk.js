@@ -2,6 +2,7 @@
 /* eslint-disable no-console */
 require('dotenv').config();
 const fs = require('fs');
+// const util = require('util');
 
 const accountSid = process.env.TWILIO_ACCOUNT_SID;
 const messageDis = process.env.TWILIO_MESSAGING_SERVICE_SID;
@@ -11,18 +12,16 @@ const twilioNum = process.env.TWILIO_PHONE_NUM;
 
 const smsBody = 'Monday night test message.';
 
-// test code to save targetNums to local file
-const util = require('util');
-
-// fs.writeFileSync('./data.json', targetNums.toString(), 'utf-8');
+// code to save targetNums to local file
+// fs.writeFileSync('./data.txt', targetNums.toString(), 'utf-8');
 
 // test code to read targetNums array from local file
-const targetNums = fs.readFileSync('./data.json', 'utf8').split(',');
+const targetNums = fs.readFileSync('./data.txt', 'utf8').split(',');
 // tn = JSON.parse(targetNums);
-console.log(targetNums);
 
 // const client = require('twilio')(accountSid, authToken);
 
+console.log(targetNums);
 targetNums.map((targetNum) => {
   console.log(targetNum);
 });
