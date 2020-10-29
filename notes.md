@@ -13,11 +13,12 @@
 # project outline
 based off: https://www.twilio.com/blog/2017/12/send-bulk-sms-twilio-node-js.html
 * receive list of phone numbers
-  * need to standardize number to Twilio format
   * need to archive number as collected
 * receive outgoing SMS message
 * send list message
+* update message status via API
 
 ## in process
+* need to standardize number to Twilio format
 
 ### complete
