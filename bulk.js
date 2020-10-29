@@ -6,23 +6,20 @@ const { format } = require('path');
 // const util = require('util');
 
 const accountSid = process.env.TWILIO_ACCOUNT_SID;
-const messageDis = process.env.TWILIO_MESSAGING_SERVICE_SID;
+const messageSid = process.env.TWILIO_MESSAGING_SERVICE_SID;
 const authToken = process.env.TWILIO_AUTH_TOKEN;
 const twilioNum = process.env.TWILIO_PHONE_NUM;
 
-const smsBody = 'Hi. This is Amy Roat, No Libs Democratic Committee Person. You requested a mail-in ballot. I am encouraging you to deposit it in a Voting Drop Box ASAP. The closest drop box and satellite Voting Center is at 520 Columbus Blvd on the southwest corner of Spring Garden St. If you already submitted it, when and where? Questions?';
+const smsBody = 'Hi. This is Amy Roat, No Libs Democratic Committee Person. You are listed as having requested a mail-in ballot. I am encouraging you to deposit it in a Voting Drop Box ASAP. The closest drop box and satellite Voting Center is at 520 Columbus Blvd on the southwest corner of Spring Garden St. If you already submitted it, when and where? "Spoiling" the ballot at the polls on Nov 3 will be time consuming. Questions? Need a ride?';
 
 const client = require('twilio')(accountSid, authToken);
 
-// code to save targetNums to local file
-// fs.writeFileSync('./data.txt', targetNums.toString(), 'utf-8');
-
-// test code to read targetNums array from local file
 // import target phone numbers from local file, spliting on newline
-const targetNums = fs.readFileSync('./turf01.txt', 'utf8').split('\r\n');
-// tn = JSON.parse(targetNums);
+let targetNums = fs.readFileSync('./turf03.txt', 'utf8').split('\r\n');
 
-// const client = require('twilio')(accountSid, authToken);
+// remove duplicate numbers by converting to a Set and back
+
+targetNums = [...new Set(targetNums)];
 
 // format target phone numbers to twilio standard
 const formatNums = targetNums.map((targetNum) => {
@@ -37,25 +34,16 @@ const formatNums = targetNums.map((targetNum) => {
   return formatNum;
 });
 console.log(formatNums);
+console.log(formatNums.length);
 
 // Promise.all(
-//   targetNums.map((targetNum) => {
-//     return client.messages.create({
-//       to: targetNums,
-//       from: twilioNum,
-//       body: `${smsBody}`,
-//     });
-//   });
+//   formatNums.map((formatNum) => client.messages.create({
+//     to: formatNum,
+//     from: messageSid,
+//     body: `${smsBody}`,
+//   })),
 // )
-//   .then(messages => {
-//     console.log('Messages sent.')
+//   .then((messages) => {
+//     console.log('Messages sent.');
 //   })
-//   .catch((err) => console.error(err));
-
-// client.messages.create({
-//   to: targetNums,
-//   from: twilioNum,
-//   body: `${smsBody}`,
-// })
-//   .then((message) => console.log(message))
 //   .catch((err) => console.error(err));
