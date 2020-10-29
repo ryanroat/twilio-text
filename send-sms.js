@@ -7,7 +7,7 @@ const authToken = process.env.TWILIO_AUTH_TOKEN;
 const twilioNum = process.env.TWILIO_PHONE_NUM;
 const targetNum = process.env.TARGET_PHONE_NUM;
 
-const smsBody = 'Monday night test message.';
+const smsBody = 'Hi. This is Amy Roat, No Libs Democratic Committee Person. You requested a mail-in ballot. I am encouraging you to deposit it in a Voting Drop Box ASAP. The closest drop box and satellite Voting Center is at 520 Columbus Blvd on the southwest corner of Spring Garden St. If you already submitted it, when and where? Questions?';
 
 const client = require('twilio')(accountSid, authToken);
 
