@@ -18,7 +18,6 @@ const client = require('twilio')(accountSid, authToken);
 let targetNums = fs.readFileSync('./turf03.txt', 'utf8').split('\r\n');
 
 // remove duplicate numbers by converting to a Set and back
-
 targetNums = [...new Set(targetNums)];
 
 // format target phone numbers to twilio standard
