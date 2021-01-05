@@ -36,6 +36,8 @@ const formatNums = targetNums.map((targetNum) => {
 console.log(formatNums);
 console.log(formatNums.length);
 
+// TODO: uncomment following code to send text messages once data is ready
+
 // Promise.all(
 //   formatNums.map((formatNum) => client.messages.create({
 //     to: formatNum,
