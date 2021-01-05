@@ -19,6 +19,6 @@
   "homepage": "https://github.com/ryanroat/twilio-text#readme",
   "dependencies": {
     "dotenv": "^8.2.0",
-    "twilio": "^3.49.4"
+    "twilio": "^3.54.1"
   }
 }
