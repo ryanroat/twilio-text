@@ -11,12 +11,12 @@ const authToken = process.env.TWILIO_AUTH_TOKEN;
 const twilioNum = process.env.TWILIO_PHONE_NUM;
 
 // this is the static message to send
-const smsBody = 'Hi there. The message payload goes here.';
+const smsBody = 'On May 17, VOTE for Pete McDermott for State Representative. Pete is a high school teacher who will work to strengthen our education system, ensure that kids have a safe place to play and create, bring more family sustaining jobs home, and advocate for our retirees. Pete McDermott is committed to you and fighting to ensure that our community is stronger and safer. Ballot position #16. Thank you, Amy ** reply STOP to opt out **';
 
 const client = require('twilio')(accountSid, authToken);
 
 // import target phone numbers from local file, spliting on newline
-let targetNums = fs.readFileSync('./turf03.txt', 'utf8').split('\r\n');
+let targetNums = fs.readFileSync('./w41-d16.txt', 'utf8').split('\r\n');
 
 // remove duplicate numbers by converting to a Set and back
 targetNums = [...new Set(targetNums)];
@@ -38,14 +38,14 @@ console.log(formatNums.length);
 
 // TODO: uncomment following code to send text messages once data is ready
 
-// Promise.all(
-//   formatNums.map((formatNum) => client.messages.create({
-//     to: formatNum,
-//     from: messageSid,
-//     body: `${smsBody}`,
-//   })),
-// )
-//   .then((messages) => {
-//     console.log('Messages sent.');
-//   })
-//   .catch((err) => console.error(err));
+Promise.all(
+  formatNums.map((formatNum) => client.messages.create({
+    to: formatNum,
+    from: messageSid,
+    body: `${smsBody}`,
+  })),
+)
+  .then((messages) => {
+    console.log('Messages sent.');
+  })
+  .catch((err) => console.error(err));
