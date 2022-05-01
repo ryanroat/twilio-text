@@ -16,7 +16,7 @@ const smsBody = 'On May 17, VOTE for Pete McDermott for State Representative. Pe
 const client = require('twilio')(accountSid, authToken);
 
 // import target phone numbers from local file, spliting on newline
-let targetNums = fs.readFileSync('./w41-d16.txt', 'utf8').split('\r\n');
+let targetNums = fs.readFileSync('./turf/w41-d21.txt', 'utf8').split('\r\n');
 
 // remove duplicate numbers by converting to a Set and back
 targetNums = [...new Set(targetNums)];
@@ -38,14 +38,14 @@ console.log(formatNums.length);
 
 // TODO: uncomment following code to send text messages once data is ready
 
-Promise.all(
-  formatNums.map((formatNum) => client.messages.create({
-    to: formatNum,
-    from: messageSid,
-    body: `${smsBody}`,
-  })),
-)
-  .then((messages) => {
-    console.log('Messages sent.');
-  })
-  .catch((err) => console.error(err));
+// Promise.all(
+//   formatNums.map((formatNum) => client.messages.create({
+//     to: formatNum,
+//     from: messageSid,
+//     body: `${smsBody}`,
+//   })),
+// )
+//   .then((messages) => {
+//     console.log('Messages sent.');
+//   })
+//   .catch((err) => console.error(err));
